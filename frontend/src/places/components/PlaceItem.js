@@ -8,7 +8,7 @@ import Modal from "../../shared/components/UIElements/Modal";
 import Map from "../../shared/components/UIElements/Map";
 import { AuthContext } from "../../shared/components/context/auth-context";
 
-import (AuthContext)
+//import (AuthContext)
 const PlaceItem = (props) => {
 
   const auth = useContext(AuthContext);
