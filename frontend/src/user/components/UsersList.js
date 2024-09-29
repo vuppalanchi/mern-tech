@@ -22,13 +22,13 @@ if(props.items.length===0){
 //upender code
 return <ul className='users-list'>
     {
-        props.items.map(user =>{
+        props.items.map(user =>{            
             return <UserItem 
                 key={user.id} 
                 id={user.id} 
                 image={user.image} 
                 name={user.name} 
-                placeCount={user.places.length}
+                placeCount={user.places ? user.places.length :0}
                 
                 />;
         })

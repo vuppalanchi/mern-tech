@@ -1,4 +1,4 @@
-const { v4: uuidv4 } = require("uuid");
+//const { v4: uuidv4 } = require("uuid");
 
 const HttpError = require('../models/http-error');
 
@@ -30,6 +30,7 @@ const getUsers = async (req,res,next) =>{
     }
     
     res.json({users:  users.map(user => user.toObject({getters:true}))});
+    console.log('I am I executed ? -yes and users data is ' + res.json());
 };
 
 const signup = async (req,res,next) => {

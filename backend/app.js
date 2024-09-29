@@ -45,7 +45,7 @@ app.use((error,req,res,next) => {
 
 
 mongoose
-.connect('mongodb+srv://xxxxxxx:xxxxxxxx@atlascluster.qzphyoq.mongodb.net/places?retryWrites=true&w=majority&appName=AtlasCluster')
+.connect('mongodb+srv://upen:password123password@atlascluster.qzphyoq.mongodb.net/places?retryWrites=true&w=majority&appName=AtlasCluster')
 .then(()=>{
     app.listen(5000);
 })

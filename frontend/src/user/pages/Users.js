@@ -6,10 +6,22 @@ import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 
 //upender code
 const Users = () => {
+    // const DUMMY_USERS = [
+    //     {
+    //         id: 'u1',
+    //         name: 'Upender Vuppalanchi',
+    //         email: 'upentest@gmail.com',
+    //         password: 'testers'
+    //     }
+    // ];
 
+    console.log('here in Users js file');
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState();
-    const [loadedUsers, setLoadedUsers] = useState();
+    //const [loadedUsers, setLoadedUsers] = useState();
+    //console.log(' use state entries ' + useState().entries().)
+    const [loadedUsers, setLoadedUsers] = useState([]);
+    //const [loadedUsers,setLoadedUsers] = useState<charactersDataType>([]);
     
 
     
@@ -21,7 +33,7 @@ const Users = () => {
             try{
                 const response = await fetch('http://localhost:5000/api/users');
                 const responseData = await response.json();
-                console.log('response recieved is ' + responseData);
+                console.log('Upender - response recieved is ' + responseData.users[0].name);
 
                 if(!response.ok){
                     throw new Error(responseData.message);
@@ -52,7 +64,7 @@ const Users = () => {
                 <LoadingSpinner/>
             </div>
         )}
-        {!isLoading && loadedUsers.length && <UsersList items= {loadedUsers} />} 
+        {!isLoading && loadedUsers && <UsersList items={loadedUsers} />}
     </React.Fragment>
     );
 };
