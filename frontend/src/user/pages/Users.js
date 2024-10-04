@@ -3,62 +3,35 @@ import UsersList from '../components/UsersList';
 
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
+import { useHttpClient } from '../../shared/hooks/http-hook';
+import (useHttpClient);
+
 
 //upender code
 const Users = () => {
-    // const DUMMY_USERS = [
-    //     {
-    //         id: 'u1',
-    //         name: 'Upender Vuppalanchi',
-    //         email: 'upentest@gmail.com',
-    //         password: 'testers'
-    //     }
-    // ];
-
     console.log('here in Users js file');
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState();
-    //const [loadedUsers, setLoadedUsers] = useState();
-    //console.log(' use state entries ' + useState().entries().)
+
+    const {isLoading,error,sendRequest,clearError} = useHttpClient();
     const [loadedUsers, setLoadedUsers] = useState([]);
-    //const [loadedUsers,setLoadedUsers] = useState<charactersDataType>([]);
-    
 
-    
-        useEffect( () => {
+    useEffect( () => {
 
-        const sendRequest = async() => {
-            setIsLoading(true);
-
-            try{
-                const response = await fetch('http://localhost:5000/api/users');
-                const responseData = await response.json();
-                console.log('Upender - response recieved is ' + responseData.users[0].name);
-
-                if(!response.ok){
-                    throw new Error(responseData.message);
-                }
-
+        const fetchUsers = async() => {
+            try{                
+                const responseData = await sendRequest(
+                    'http://localhost:5000/api/users'
+                ); 
                 setLoadedUsers(responseData.users);
-                setIsLoading(false);
-    
             }catch(err){
-
-                setError(err.message);
             }
-            setIsLoading(false);
         };
-        sendRequest();
-    },[]);
+        fetchUsers();
+    },[sendRequest]);
 
     
-    const errorHandler =() => {
-        setError(null);
-    };
-
     return (
     <React.Fragment>
-        <ErrorModal error={error} onClear={errorHandler} />
+        <ErrorModal error={error} onClear={clearError} />
         {isLoading && (
             <div className="center">
                 <LoadingSpinner/>
