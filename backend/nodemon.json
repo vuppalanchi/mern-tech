@@ -1,0 +1,9 @@
+{
+    "env" :{
+        "DB_USER": "upen",
+        "DB_PASSWORD": "password123password",
+        "DB_NAME": "mern",
+        "GOOGLE_API_KEY":"AIzaSyAFpVHpaOH4GqmMz8-Pk9PQaco5jJLS8rM",
+        "JWT_KEY": "supersecret_dont_share"
+    }
+}
